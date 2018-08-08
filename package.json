@@ -4,6 +4,7 @@
   "description": "-Introduction\r Kupilaptop.ba is a weebpage for selling and purchasing laptops. The weebpage will only be focused on laptops and maybe later on parts for the laptop.\r -Objectives\t\r Owner: Simple weebsite for seling your merchandise\r Users: Objective of the weebsite is to easily find a fitting laptop for your needs, or if you want to buy a new laptop.\r -Features Kupilaptop will provide functionalities for:\r • Register on the weebsite for easier interraction\r • Selling a laptop\r • Purchasing a laptop\r • Filter laptop specifications according to your needs\r • Admin panel for adding a laptop",
   "main": "index.html",
   "dependencies": {
+    "angular-image-slider": "0.0.8",
     "express": "^4.16.3",
     "nodemon": "^1.18.3"
   },
