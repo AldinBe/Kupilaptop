@@ -9,44 +9,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="controller.js"></script>
+    <script src="getLaptop.js"></script>
+    <script src="addLaptop.js"></script>
     <link rel="icon" type="image/ico" href="images/icon.ico" />
+        <!-- Toastr -->
+        <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <meta name="author" content="Aldin">
-
+    <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
+</head>
 <body ng-app="myApp">
 
     <script>
-        var app = angular.module("myApp", ["ngRoute"]);
+        var app = angular.module("myApp", ["ngRoute", "toastr"]);
+        app.controller("getLaptop", getLaptop)
+        app.controller("addLaptop", addLaptop)
+
         app.config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.html"
+                    templateUrl: "home.html",
                 })
                 .when("/home", {
-                    templateUrl: "home.html"
+                    templateUrl: "home.html",
+
                 })
                 .when("/register", {
-                    templateUrl: "register.html"
+                    templateUrl: "register.html",
+
                 })
                 .when("/adminPanel", {
-                    templateUrl: "adminPanel.html"
+                    templateUrl: "dashboard.html",
+
                 })
                 .when("/shop", {
-                    templateUrl: "shop.html"
+                    templateUrl: "shop.html",
                 })
                 .when("/contact", {
-                    templateUrl: "contact.html"
+                    templateUrl: "contact.html",
+
                 })
                 .when("/info", {
-                    templateUrl: "info.html"
+                    templateUrl: "info.html",
+
                 })
                 .when("/kupi", {
-                    templateUrl: "kupi.html"
+                    templateUrl: "kupi.html",
+
                 })
                 .when("/login", {
-                    templateUrl: "login.html"
+                    templateUrl: "login.html",
+
+                })
+                .when("/tables", {
+                    templateUrl: "tables.html",
+
+                })
+                .when("/laptopList", {
+                    templateUrl: "laptopList.html",
+                    controller : "getLaptop"
+
+                })
+
+                .when("/userList", {
+                    templateUrl: "userList.html",
+                    controller : "getLaptop"
+
+
+                })
+                .when("/add", {
+                    templateUrl: "test.html",
+                    controller : "addLaptop"
+
                 })
         });
     </script>
+
 
     <div ng-view></div>
 

@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link data-require="bootstrap@4.0.5" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
+    <script data-require="bootstrap@4.0.5" data-semver="4.0.5" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
+    <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
+    <script src="controller.js"></script>
+
+      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+ 
+    
+
+    <!-- Bootstrap core CSS-->
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <!-- CSS Files -->
+    <link href="css/dashboardv2.css" rel="stylesheet" />
+    
+  </head>
+
+  <body class="container" ng-app="myApp" ng-controller="myController" ng-cloak>
+    <!--Form-->
+    <div class="wrapper ">
+        <div class="sidebar" data-color="azure" data-background-color="white" data-image="../assets/img/sidebar-1.jpg">
+          <!--
+            Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
+    
+            Tip 2: you can also add an image using data-image tag
+        -->
+          <div class="logo">
+            <a href="" class="simple-text logo-normal">
+              Kupilaptop
+            </a>
+          </div>
+          <div class="sidebar-wrapper">
+            <ul class="nav">
+              <li class="nav-item">
+                <a class="nav-link" href="#!adminPanel">
+                  <i class="material-icons">dashboard</i>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+    
+              <li class="nav-item">
+                <a class="nav-link" href="#!laptopList">
+                  <i class="material-icons">content_paste</i>
+                  <p>Lista Proizvoda</p>
+                </a>
+              </li>
+    
+              <li class="nav-item active">
+                  <a class="nav-link" href="#!add">
+                    <i class="material-icons">content_paste</i>
+                    <p>Lista Proizvoda</p>
+                  </a>
+                </li>
+              
+              <li class="nav-item ">
+                <a class="nav-link" href="#!userList">
+                  <i class="material-icons">person</i>
+                  <p>Lista Korisnika</p>
+                </a>
+              </li>
+    
+              <li class="nav-item ">
+                  <a class="nav-link" href="./notifications.html">
+                    <i class="material-icons">notifications</i>
+                    <p>Notifikacije</p>
+                  </a>
+                </li> 
+    
+              <li class="nav-item active-pro ">
+                    <a class="nav-link" href="./upgrade.html">
+                        <i class="material-icons">unarchive</i>
+                        <p>Logout</p>
+                    </a>
+                </li>
+            </ul>
+          </div>
+        </div>
+        <div class="main-panel" style="background-color: white">
+          <!-- Navbar -->
+          <!-- End Navbar -->
+            
+                  <form ng-submit="addLaptop()">
+
+                      <div class="container">
+              
+      
+                          <div class="row">
+                            <div class="col-md-6">
+                            <h2>Dodaj Proizvod KURAC</h2>
+                            </div>
+                          </div>
+
+                          <div class="row">
+                              <div class="col-sm-3">
+                
+                                  <label for="productprice" class="loginFormElement">Ime Proizvoda</label>
+                                  <input class="form-control" id="productprice" type="name" ng-model="laptop.ime" >
+                
+                              </div>
+                
+                              <div class="col-sm-3">
+                
+                                  <label for="productprice" class="loginFormElement">Marka</label>
+                                  <input class="form-control" id="productprice" type="name" ng-model="laptop.brend" >
+                
+                              </div>
+                
+                              <div class="col-sm-3">
+                                  <label for="productprice" class="loginFormElement">Vrsta</label>
+                
+                                  <select class="form-control" id="productSelect" ng-model="laptop.vrsta" required>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="poslovni">Poslovni</option>
+                                    <option value="laptopTablet">Laptop-Tablet</option>
+                                  </select>
+                
+                              </div>
+                              <div class="col-sm-3">
+                                  <label for="productprice" class="loginFormElement">Veličina</label>
+                
+                                  <select class="form-control" id="productSelect" ng-model="laptop.velicina" required>
+                                    <option value="12">12</option>
+                                    <option value="12.1">12.1</option>
+                                    <option value="12.3">12.3</option>
+                                    <option value="12.5">12.5</option>
+                                    <option value="13.3">13.3</option>
+                                    <option value="14">14</option>
+                                    <option value="14.1">14.1</option>
+                                    <option value="15">15</option>
+                                    <option value="15.4">15.4</option>
+                                    <option value="15.6">15.6</option>
+                                    <option value="16">16</option>
+                                    <option value="16.5">16.5</option>
+                                    <option value="17">17</option>
+                                    <option value="17.3">17.3</option>
+                                    <option value="18.5">18.5</option>
+                                    <option value="19">19</option>
+                                    <option value=">19">>19</option>
+                
+                
+                
+                                  </select>
+                
+                              </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                <h3>Ram</h3>
+                                </div>
+                              </div>
+                
+                              <div class="row">
+                                  <div class="col-sm-6">
+                                      <label for="productprice" class="loginFormElement">Veličina</label>
+                                      <select class="form-control" id="productSelect" ng-model="laptop.ram" required>
+                                        <option value="2">2 GB</option>
+                                        <option value="4">4 GB</option>
+                                        <option value="6">6 GB</option>
+                                        <option value="8">8 GB</option>
+                                        <option value="12">12 GB</option>
+                                        <option value="16">16 GB</option>
+                                        <option value="32">32 GB</option>
+                                        <option value="64">64 GB</option>
+                                      </select>
+                    
+                                  </div>
+                                  <div class="col-sm-6">
+                                      <label for="productprice" class="loginFormElement">Vrsta</label>
+                                      <select class="form-control" id="productSelect" ng-model="laptop.ramVrsta" required>
+                                          <option value="DDR SDRAM">DDR SDRAM</option>
+                                          <option value="DDR2">DDR2</option>
+                                          <option value="DDR3">DDR3</option>
+                                          <option value="DDR4">DDR4</option>
+                                      </select>
+                    
+                                  </div>
+                                </div>
+                    
+                
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <h3>Procesor</h3>
+                                    </div>
+                                  </div>
+                    
+                                  <div class="row">
+                                      <div class="col-sm-3">
+                
+                                          <label for="productprice" class="loginFormElement">Ime</label>
+                                          <input class="form-control" id="productprice" type="name" ng-model="laptop.procesor" >
+                                        </div>
+                                    <div class="col-sm-3">
+                                      
+                                  <label for="productprice" class="loginFormElement">Vrsta</label>
+                                  <input class="form-control" id="productprice" type="name"ng-model="laptop.procesorVrsta" >
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label for="productprice" class="loginFormElement">Brzina</label>
+                                        <input class="form-control" id="productprice" type="name"ng-model="laptop.brzinaProcesora" >
+                      
+                                      </div>
+                                      <div class="col-sm-3">
+                                          <label for="productprice" class="loginFormElement">Generacija</label>
+                                          <input class="form-control" id="productprice" type="name"ng-model="laptop.procesorGeneracija" >
+                                        </div>
+                  
+                                  </div>
+                
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                        <h3>Grafička</h3>
+                                        </div>
+                                      </div>
+                        
+                                      <div class="row">
+                                          <div class="col-sm-4">
+                                              <label for="productprice" class="loginFormElement">Vrsta</label>
+                
+                                              <select class="form-control" id="productSelect" ng-model="laptop.vrstaGraficke" required>
+                                                <option value="Integrisana">Integrisana</option>
+                                                <option value="Zasebna">Zasebna</option>
+                                                <option value="IntegrisanaZasebna">Integrisana + Zasebna</option>
+                                              </select>
+                            
+                                          </div>
+                                          <div class="col-sm-4">
+                                              <label for="productprice" class="loginFormElement">Ime</label>
+                                              <input class="form-control" id="productprice" type="name" ng-model="laptop.graficka" >
+                            
+                            
+                                          </div>
+                                          <div class="col-sm-4">
+                                              <label for="productprice" class="loginFormElement">Veličina</label>
+                                              <input class="form-control" id="productprice" type="name" ng-model="laptop.kapacitetGraficke" >
+                
+                            
+                                          </div>
+                                        </div>
+                
+                                        
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <h3>Memorija</h3>
+                                            </div>
+                                          </div>
+                            
+                                          <div class="row">
+                                              <div class="col-sm-6">
+                                                  <label for="productprice" class="loginFormElement">Vrsta</label>
+                                                  <select class="form-control" id="productSelect" ng-model="laptop.vrstaMemorije" required>
+                                                    <option value="HDD">HDD</option>
+                                                    <option value="SSD">SSD</option>
+                
+                                                  </select>
+                                
+                                              </div>
+                                              <div class="col-sm-6">
+                                                  <label for="productprice" class="loginFormElement">Veličina</label>
+                                                  <input class="form-control" id="productprice" type="name" ng-model="laptop.kapacitetGraficke" >
+                                
+                                              </div>
+                                           </div>
+                
+                
+                                            
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                <h3>Dodatno</h3>
+                                                </div>
+                                              </div>
+                                
+                                              <div class="row">
+                                                  <div class="col-sm-6">
+                                                      <label for="productprice" class="loginFormElement">Opis Proizvoda</label>
+                                                      <textarea class="form-control" ng-model="laptop.opisProizvoda"></textarea>
+                                                  </div>
+                                                  <div class="col-sm-6">
+                                                      <label for="productprice" class="loginFormElement">Slike</label><br>
+                
+                                                      <input class="filestyle" data-icon="false" type="file">
+                
+                                    
+                                                  </div>
+                                                </div>
+                
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                    <h3>Cijena</h3>
+                                                    <input class="form-control" id="productprice" type="name" ng-model="laptop.cijena" >
+                                                    </div>
+                                                  </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <input type="submit" value="submit" class="btn btn-success btn-sm"/>   
+                            </div>
+                          </div> <!-- form-group // -->
+                          
+                        </div><!-- panel-body // -->
+            
+          
+
+    </form>
+ </body>
+
+</html>
