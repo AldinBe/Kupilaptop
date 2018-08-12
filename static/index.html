@@ -1,23 +1,41 @@
 <!DOCTYPE html>
 <html>
-
 <head>
     <!--Page information-->
     <title>Kupilaptop</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">  
+     <meta name="author" content="Aldin"> 
+    <link rel="icon" type="image/ico" href="images/icon.ico" />
+
+     <!-- Angular -->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
-    <script src="controller.js"></script>
-    <script src="getLaptop.js"></script>
-    <script src="addLaptop.js"></script>
-    <link rel="icon" type="image/ico" href="images/icon.ico" />
-        <!-- Toastr -->
-        <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
-    <meta name="author" content="Aldin">
+
+     <!-- Controller -->
+
+    <script src="controllers/controller.js"></script>
+    <script src="controllers/getLaptop.js"></script>
+    <script src="controllers/addLaptop.js"></script>
+
+    <!-- Controller -->
+    <link rel="stylesheet" href="assets/css/all.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrapd.css">
+    <link rel="stylesheet" href="assets/css/classy-nav.min.css">
+    <link rel="stylesheet" href="assets/css/core-style.css">
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/dashboardv2.css">
+    <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+
+    <!-- Toastr -->
+    <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
 </head>
+
 <body ng-app="myApp">
 
     <script>
@@ -28,57 +46,58 @@
         app.config(function ($routeProvider) {
             $routeProvider
                 .when("/", {
-                    templateUrl: "home.html",
+                    templateUrl: "views/home.html"
                 })
                 .when("/home", {
-                    templateUrl: "home.html",
+                    templateUrl: "views/home.html"
 
                 })
                 .when("/register", {
-                    templateUrl: "register.html",
+                    templateUrl: "views/register.html"
 
                 })
                 .when("/adminPanel", {
-                    templateUrl: "dashboard.html",
+                    templateUrl: "views/dashboard.html"
 
                 })
                 .when("/shop", {
-                    templateUrl: "shop.html",
+                    templateUrl: "views/shop.html",
+                    controller: "getLaptop"
                 })
                 .when("/contact", {
-                    templateUrl: "contact.html",
+                    templateUrl: "views/contact.html"
 
                 })
                 .when("/info", {
-                    templateUrl: "info.html",
+                    templateUrl: "views/info.html"
 
                 })
                 .when("/kupi", {
-                    templateUrl: "kupi.html",
+                    templateUrl: "views/kupi.html"
 
                 })
                 .when("/login", {
-                    templateUrl: "login.html",
+                    templateUrl: "views/login.html"
 
                 })
                 .when("/tables", {
-                    templateUrl: "tables.html",
+                    templateUrl: "views/tables.html"
 
                 })
                 .when("/laptopList", {
-                    templateUrl: "laptopList.html",
+                    templateUrl: "views/laptopList.html",
                     controller : "getLaptop"
 
                 })
 
                 .when("/userList", {
-                    templateUrl: "userList.html",
+                    templateUrl: "views/userList.html",
                     controller : "getLaptop"
 
 
                 })
                 .when("/add", {
-                    templateUrl: "test.html",
+                    templateUrl: "views/add.html",
                     controller : "addLaptop"
 
                 })

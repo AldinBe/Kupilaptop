@@ -16,7 +16,8 @@
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
   <!-- CSS Files -->
-  <link href="css/dashboardv2.css" rel="stylesheet" />
+  <link href="assets/css/dashboardv2.css" rel="stylesheet" />
+
 
 
 </head>
@@ -145,8 +146,8 @@
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
-                      <table class="table">
-                        <thead class=" text-primary">
+                      <table class="table table-bordered">
+                      <thead class=" text-primary" style="border: 10px">
                       <th>Ime</th>
                       <th>Marka</th>
                       <th>Vrsta</th>
@@ -161,6 +162,7 @@
                       <th>Memorija</th>
                       <th>Kapacitet</th>
                       <th>Veličina</th>
+                      <th>Cijena</th>
                       <th>Detaljno</th>
                         </thead>
                         <tbody>
@@ -179,6 +181,8 @@
                               <td>{{laptop.vrstaMemorije}}</td>
                               <td>{{laptop.kapacitetMemorije}} GB</td>
                               <td>{{laptop.velicina}} "</td>
+                              <td>{{laptop.cijena}} "</td>
+
                               <td>......</td>
                           </tbody>
                       </table>

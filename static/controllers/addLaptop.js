@@ -18,7 +18,7 @@ function addLaptop($scope, $http, toastr){
       $scope.laptopi = response.data;
       console.log($scope.laptopi);
 
-      toastr.success("User has created Successfully");
+      toastr.success("Uspješno Dodano");
 
     }, function errorCallback(response) {
 

@@ -2,14 +2,6 @@
 <html>
 
   <head>
-    <link data-require="bootstrap@4.0.5" data-semver="4.0.5" rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" />
-    <script data-require="bootstrap@4.0.5" data-semver="4.0.5" src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js"></script>
-    <script data-require="angularjs@1.6.2" data-semver="1.6.2" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.js"></script>
-    <script src="controller.js"></script>
-
-      <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
- 
-    
 
     <!-- Bootstrap core CSS-->
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
@@ -17,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <!-- CSS Files -->
-    <link href="css/dashboardv2.css" rel="stylesheet" />
+    <link href="assets/css/dashboardv2.css" rel="stylesheet" />
     
   </head>
 
@@ -54,7 +46,7 @@
               <li class="nav-item active">
                   <a class="nav-link" href="#!add">
                     <i class="material-icons">content_paste</i>
-                    <p>Lista Proizvoda</p>
+                    <p>Dodaj Proizvod</p>
                   </a>
                 </li>
               
@@ -66,14 +58,14 @@
               </li>
     
               <li class="nav-item ">
-                  <a class="nav-link" href="./notifications.html">
+                  <a class="nav-link" href="#">
                     <i class="material-icons">notifications</i>
                     <p>Notifikacije</p>
                   </a>
                 </li> 
     
               <li class="nav-item active-pro ">
-                    <a class="nav-link" href="./upgrade.html">
+                    <a class="nav-link" href="#">
                         <i class="material-icons">unarchive</i>
                         <p>Logout</p>
                     </a>
@@ -92,7 +84,7 @@
       
                           <div class="row">
                             <div class="col-md-6">
-                            <h2>Dodaj Proizvod KURAC</h2>
+                            <h2>Dodaj Proizvod</h2>
                             </div>
                           </div>
 
@@ -264,7 +256,7 @@
                                               </div>
                                               <div class="col-sm-6">
                                                   <label for="productprice" class="loginFormElement">Veličina</label>
-                                                  <input class="form-control" id="productprice" type="name" ng-model="laptop.kapacitetGraficke" >
+                                                  <input class="form-control" id="productprice" type="name" ng-model="laptop.kapacitetMemorije" >
                                 
                                               </div>
                                            </div>
@@ -285,8 +277,7 @@
                                                   <div class="col-sm-6">
                                                       <label for="productprice" class="loginFormElement">Slike</label><br>
                 
-                                                      <input class="filestyle" data-icon="false" type="file">
-                
+                                                      <input type="file" ngf-select="" ng-model="laptop.slike" name="file" accept="image/*" required="">                
                                     
                                                   </div>
                                                 </div>

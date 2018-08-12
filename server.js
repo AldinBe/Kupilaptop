@@ -5,11 +5,6 @@ var body_parser = require('body-parser')
 var mongojs = require('mongojs')
 var db = mongojs('localhost:27017/kupilaptopDB', ['laptopi'])
 
-var urlencodedParser = body_parser.urlencoded({
-  extended: false
-})
-
-
 
 app.use(body_parser.json())
 app.use(express.static(__dirname + '/static'))
@@ -23,15 +18,23 @@ app.get('/laptopi', function (req, res) {
   });
 });
 
-app.post('/laptopi', urlencodedParser, function (req, res, next) {
-  console.log(req.body)
-
-  db.Kartica.insert(req.body, function (err, docs) {
-    console.log('Card date inserted successfully')
-    res.json(docs)
+app.post('/laptopi', function(req, res) {
+  req.body._id = null;
+  var laptop = req.body;
+  db.collection('laptopi').insert(laptop, function(err, data) {
+      if (err) return console.log(err);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(laptop);
   })
-})
+});
 
+app.delete('/laptopi/:id', function (req, res) {
+  var id = req.params.id;
+  console.log(id);
+  db.laptopi.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
+    res.json(doc);
+  });
+});
 
 
 app.get('/laptopi/:id', function (req, res) {
