@@ -15,11 +15,14 @@
 
      <!-- Controller -->
 
-    <script src="controllers/controller.js"></script>
-    <script src="controllers/getLaptop.js"></script>
-    <script src="controllers/addLaptop.js"></script>
+    <script src="controllers/laptopController.js"></script>
 
-    <!-- Controller -->
+
+    <!--Popeye-->
+    <script src="assets/release/popeye.js"></script>
+    <link rel="stylesheet" href="assets/release/popeye.css" />
+
+    <!-- CSS -->
     <link rel="stylesheet" href="assets/css/all.css">
     <link rel="stylesheet" href="assets/css/all.min.css">
     <link rel="stylesheet" href="assets/css/animate.css">
@@ -31,6 +34,7 @@
     <link rel="stylesheet" href="assets/css/dashboardv2.css">
     <link rel="stylesheet" href="assets/css/font-awesome.min.css">
 
+
     <!-- Toastr -->
     <link rel="stylesheet" href="//unpkg.com/angular-toastr/dist/angular-toastr.css" />
     <script src="//unpkg.com/angular-toastr/dist/angular-toastr.tpls.js"></script>
@@ -39,9 +43,9 @@
 <body ng-app="myApp">
 
     <script>
-        var app = angular.module("myApp", ["ngRoute", "toastr"]);
-        app.controller("getLaptop", getLaptop)
-        app.controller("addLaptop", addLaptop)
+        var app = angular.module("myApp", ["ngRoute", "toastr", "pathgather.popeye"]);
+        app.controller("laptopController", laptopController)
+
 
         app.config(function ($routeProvider) {
             $routeProvider
@@ -62,7 +66,7 @@
                 })
                 .when("/shop", {
                     templateUrl: "views/shop.html",
-                    controller: "getLaptop"
+                    controller : "laptopController"
                 })
                 .when("/contact", {
                     templateUrl: "views/contact.html"
@@ -86,19 +90,17 @@
                 })
                 .when("/laptopList", {
                     templateUrl: "views/laptopList.html",
-                    controller : "getLaptop"
+                    controller : "laptopController"
 
                 })
 
                 .when("/userList", {
-                    templateUrl: "views/userList.html",
-                    controller : "getLaptop"
+                    templateUrl: "views/userList.html"
 
 
                 })
                 .when("/add", {
-                    templateUrl: "views/add.html",
-                    controller : "addLaptop"
+                    templateUrl: "views/add.html"
 
                 })
         });
