@@ -3,7 +3,7 @@ var app = express()
 var port = process.env.PORT || 5000
 var body_parser = require('body-parser')
 var mongojs = require('mongojs')
-var db = mongojs('localhost:27017/kupilaptopDB', ['laptopi'])
+var db = mongojs('localhost:27017/kupilaptopDB', ['laptopi', 'users'])
 
 
 app.use(body_parser.json())
@@ -18,6 +18,16 @@ app.get('/laptopi', function (req, res) {
   });
 });
 
+app.get('/users', function (req, res) {
+  console.log('I received a GET request');
+
+  db.users.find(function (err, docs) {
+    console.log(docs);
+    res.json(docs);
+  });
+});
+
+
 app.post('/laptopi', function(req, res) {
   req.body._id = null;
   var laptop = req.body;
@@ -27,6 +37,17 @@ app.post('/laptopi', function(req, res) {
       res.send(laptop);
   })
 });
+
+app.post('/users', function(req, res) {
+  req.body._id = null;
+  var user = req.body;
+  db.collection('users').insert(user, function(err, data) {
+      if (err) return console.log(err);
+      res.setHeader('Content-Type', 'application/json');
+      res.send(user);
+  })
+});
+
 
 app.delete('/laptopi/:id', function (req, res) {
   var id = req.params.id;
@@ -50,7 +71,7 @@ app.put('/laptopi/:id', function (req, res) {
   console.log(req.body.name);
   db.laptopi.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
-    update: {$set: {name: req.body.name, email: req.body.email, number: req.body.number}},
+    update: {$set: {ime: req.body.ime,brend: req.body.brend,vrsta: req.body.vrsta,procesor: req.body.procesor,procesorGeneracija: req.body.procesorGeneracija,brzinaProcesora: req.body.brzinaProcesora,ram: req.body.ram,graficka: req.body.graficka,vrstaGraficke: req.body.vrstaGraficke,kapacitetGraficke: req.body.kapacitetGraficke,vrstaMemorije: req.body.vrstaMemorije,kapacitetMemorije: req.body.kapacitetMemorije,velicina: req.body.velicina,tourName: req.body.tourName, cijena: req.body.cijena}},
     new: true}, function (err, doc) {
       res.json(doc);
     }

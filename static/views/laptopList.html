@@ -299,11 +299,14 @@
     </div>
     <hr>
     <div class="row">
-      <div class="col-sm-6">
-        <input type="submit" value="submit" class="btn btn-success"/>   
+      <div class="col-sm-4">
+        <input type="submit" value="Objavi" class="btn btn-success" ng-click="closeModal()"/>   
       </div>
-      <div class="col-sm-6">
-        <input type="button" value="Close" class="btn btn-danger" ng-click="closeModal()">
+      <div class="col-sm-4">
+        <input type="button" value="Update" class="btn btn-info" ng-click="updateLaptop(); closeModal()">
+      </div>
+      <div class="col-sm-4">
+        <input type="button" value="Zatvori" class="btn btn-danger" ng-click="closeModal()">
       </div>
     </div>  
   </form>
@@ -351,6 +354,8 @@
             <td>{{laptop.velicina}} "</td>
             <td>{{laptop.cijena}}" KM</td>
             <td>......</td>
+            <td><button class="btn btn-warning " ng-click="editLaptop(laptop._id);openModal()">Edit</button></td>
+            <td><button class="btn btn-danger " ng-click="deleteLaptop(laptop._id) ">Izbriši</button></td>
           </tbody>
         </table>
       </div>
