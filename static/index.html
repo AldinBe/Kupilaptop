@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
 <head>
     <!--Page information-->
@@ -16,7 +16,9 @@
      <!-- Controller -->
 
     <script src="controllers/laptopController.js"></script>
-    <script src="controllers/usersController.js"></script>
+    <script src="controllers/site-controller.js"></script>
+    <script src="controllers/registration-controller.js"></script>
+
 
 
     <!--Popeye-->
@@ -47,24 +49,23 @@
     <script>
         var app = angular.module("myApp", ["ngRoute", "toastr", "pathgather.popeye"]);
         app.controller("laptopController", laptopController)
-        app.controller("userController", userController)
-
+        app.controller('registrationController', RegistrationController);
+        app.controller('siteController', SiteController);
 
 
         app.config(function ($routeProvider) {
-            $routeProvider
+                $routeProvider
                 .when("/", {
-                    templateUrl: "views/home.html",
-                    controller: "userController"
+                    templateUrl : "views/home.html",
+                    controller : "siteController"
                 })
                 .when("/home", {
-                    templateUrl: "views/home.html",
-                    controller: "userController"
-
+                    templateUrl : "views/home.html",
+                    controller : "siteController"
                 })
                 .when("/register", {
                     templateUrl: "views/register.html",
-                    controller: "userController"
+                    controller: "registrationController"
 
                 })
                 .when("/adminPanel", {

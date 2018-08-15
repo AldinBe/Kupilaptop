@@ -36,6 +36,7 @@
                         <li><a href="#!home">Početna</a></li>
                         <li><a href="#!shop">Laptopi</a></li>
                         <li><a href="#!conatct">Kontakt</a></li>
+                        <li ng-if="check_login()"><a style="color:#FFFFFF" href="#" ng-click="logout()" data-hover="Logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -58,45 +59,23 @@
         <div class="popeye-modal-container" style="padding-top: 4%" ng-show="visible">
                 <div class="popeye-modal">
                     <a class="popeye-close-modal" href ng-click="closeModal()"></a>
-            <form ng-submit="addUser()">
-                    <div class="wrap-input100 validate-input m-b-26" data-validate="Username is required">
-                            <input class="input100" type="text" name="username" placeholder="Email :">
-                            <span class="focus-input100"></span>
-                        </div>
-                
-                        <div class="wrap-input100 validate-input m-b-18" data-validate = "Password is required">
-                            <input class="input100" type="password" name="pass" placeholder="Pasvord :">
-                            <span class="focus-input100"></span>
-                        </div>
-                
-                        <div class="flex-sb-m w-full p-b-30">
-                            <div class="contact100-form-checkbox">
-                                <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                                <label class="label-checkbox100" for="ckb1">
-                                    Zapamti me
-                                </label>
-                            </div>
-                
-                            <div>
-                                <a href="#" class="txt1">
-                                    Zaboravljena šifra  ..?
-                                </a>
-                            </div>
-                        </div>
-                
-                        <div class="row">
-                            <div class="col-sm-9">
-                                    <button class="login100-form-btn">
-                                            Login
-                                        </button>
-                            </div>
-                            <div class="col-sm-3">
-                                    
-                                        <a class="login100-form-btn" href="#!register">Registracija</a>
-                            </div>
-                        </div>
+                    <div class="login-form">
+                        <form class="form-signin">
+                           <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
+                           <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+                           <label for="inputEmail" class="sr-only">Email address</label>
+                           <input type="email" id="inputEmail" class="form-control" placeholder="Email address" ng-model="credentials.email" required autofocus>
+                           <label for="inputPassword" class="sr-only">Password</label>
+                           <input type="password" id="inputPassword" class="form-control" placeholder="Password" ng-model="credentials.password" required>
+                           <div class="checkbox mb-3">
+                           </div>
+                           <button class="btn btn-lg btn-warning btn-block" type="submit" ng-click="login(credentials)">Sign in</button>
+                           <button class="btn btn-lg btn-warning btn-block" type="submit" ng-if="check_login()" ng-click="logout()">Log Out</button>
 
-            </form>
+                           <p class="mt-5 mb-3 text-muted">© 2017-2018</p>
+
+                        </form>
+                      </div>
     </header>
 
     <section class="welcome_area bg-img background-overlay" style="background-image: url(assets/img/bg-img/mainlaptop.jpg);">
