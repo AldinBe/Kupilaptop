@@ -20,7 +20,7 @@ function SiteController($scope, $http, toastr, $location){
             if(typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token)
                 localStorage.setItem('type', response.data.type)
-                toastr.success('You are successfully logged in!', 'Login Success!');
+                toastr.success('Uspješna Prijava!');
                 $location.url('/');
             }
             else if(response.data.user == false){
