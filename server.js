@@ -118,15 +118,29 @@ app.get('/laptopi', function (req, res) {
 app.post('/register', function(req, res, next) {
   req.body.type = "user";
   req.body._id = null;
-  req.body.password_confirm = null;
   var user = req.body;
+  var find = req.body.email;
+  console.log(find);
   bcrypt.hash(user.password, 10, function(err, hash) {
       user.password = hash;
-      db.collection('users').insert(user, function(err, data) {
-          if (err) return console.log(err);
-          res.setHeader('Content-Type', 'application/json');
-          res.send(user);
+      db.collection('users').find({
+        email : find
+      }).toArray(function (err,result){
+        if(err) throw err;
+
+        console.log(result);
+
+        if(result.length > 0){
+          res.sendStatus(204);
+        } else {
+          db.collection('users').insert(user, function(err, data) {
+              if (err) return console.log(err);
+              res.setHeader('Content-Type', 'application/json');
+              res.send(user);
+          })
+        }
       })
+
   })
 });
 

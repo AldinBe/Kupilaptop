@@ -20,8 +20,12 @@ function SiteController($scope, $http, toastr, $location){
             if(typeof response.data.token != 'undefined'){
                 localStorage.setItem('user',response.data.token)
                 localStorage.setItem('type', response.data.type)
-                toastr.success('Uspješna Prijava!');
-                $location.url('/');
+                toastr.success('Uspješna Prijava');
+                if(localStorage.getItem('type') == "user" ){
+                    $location.url('/');
+                } else if(localStorage.getItem('type') == "admin"){
+                    $location.url('/adminPanel');
+                }
             }
             else if(response.data.user == false){
                 toastr.error('Login Error');
