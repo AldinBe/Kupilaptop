@@ -7,6 +7,7 @@ const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
+var MongoId = require('mongodb').ObjectID;
 var db = mongojs('localhost:27017/kupilaptopDB', ['laptopi', 'users']);
 var port = process.env.PORT || 5000;
 
@@ -20,12 +21,12 @@ app.use(express.urlencoded({
 })); // to support URL-encoded bodies
 
 
-app.use('/kupilaptopDB/',function(request,response,next){
+app.use('/user/',function(request,response,next){
   jwt.verify(request.get('JWT'), jwt_secret, function(error, decoded) {      
     if (error) {
       response.status(401).send('Unauthorized access');    
     } else {
-      db.collection("users").findOne({'_id': new MongoId(decoded._id)}, function(error, user) {
+      db.collection("users").findOne({'_id': new  mongojs.ObjectId(decoded._id)}, function(error, user) {
         if (error){
           throw error;
         }else{
@@ -46,7 +47,7 @@ app.use('/admin/',function(request,response,next){
       response.status(401).send('Unauthorized access'); 
       console.log(error);   
     } else {
-      db.collection("users").findOne({'_id': new MongoId(decoded._id)}, function(error, users) {
+      db.collection("users").findOne({'_id': new  mongojs.ObjectId(decoded._id)}, function(error, users) {
         if (error){
           throw error;
         }else{
@@ -73,6 +74,7 @@ app.post('/login', function(req, res) {
           bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
                   if(users.type == "admin"){
+                    users.password = null;
                       var token = jwt.sign(users, jwt_admin, {
                           expiresIn: 60*60*24
                       });
@@ -107,7 +109,14 @@ app.post('/login', function(req, res) {
   });
 });
 
-app.get('/laptopi', function (req, res) {
+app.get('/admin/laptopi', function (req, res) {
+  console.log('I received a GET request');
+  db.laptopi.find(function (err, docs) {
+    console.log(docs);
+    res.json(docs);
+  });
+});
+app.get('/users/laptopi', function (req, res) {
   console.log('I received a GET request');
   db.laptopi.find(function (err, docs) {
     console.log(docs);
@@ -133,7 +142,7 @@ app.post('/register', function(req, res, next) {
         if(result.length > 0){
           res.sendStatus(204);
         } else {
-          db.collection('users').insert(user, function(err, data) {
+          db.users.insert(user,function(err,data) {
               if (err) return console.log(err);
               res.setHeader('Content-Type', 'application/json');
               res.send(user);
@@ -145,7 +154,7 @@ app.post('/register', function(req, res, next) {
 });
 
 
-app.post('/laptopi', function(req, res) {
+app.post('/admin/laptopi', function(req, res) {
   req.body._id = null;
   var laptop = req.body;
   db.collection('laptopi').insert(laptop, function(err, data) {
@@ -155,7 +164,7 @@ app.post('/laptopi', function(req, res) {
   })
 });
 
-app.delete('/laptopi/:id', function (req, res) {
+app.delete('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
   db.laptopi.remove({_id: mongojs.ObjectId(id)}, function (err, doc) {
@@ -164,7 +173,7 @@ app.delete('/laptopi/:id', function (req, res) {
 });
 
 
-app.get('/laptopi/:id', function (req, res) {
+app.get('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   console.log(id);
   db.laptopi.findOne({_id: mongojs.ObjectId(id)}, function (err, doc) {
@@ -172,7 +181,7 @@ app.get('/laptopi/:id', function (req, res) {
   });
 });
 
-app.put('/laptopi/:id', function (req, res) {
+app.put('/admin/laptopi/:id', function (req, res) {
   var id = req.params.id;
   console.log(req.body.name);
   db.laptopi.findAndModify({

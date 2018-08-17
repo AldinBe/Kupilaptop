@@ -2,22 +2,40 @@ function laptopController($scope, $http, toastr){
     console.log("ADD LAPTOP");
     $scope.submit = true;
 
+    var config = {headers:  {
+      'Authorization': 'Basic TmljayBDZXJtaW5hcmE6cGFzc3dvcmQ=',
+      'Accept': 'application/json;odata=verbose',
+      "JWT" : localStorage.getItem('user')
+      }
+   };
+
+   console.log(localStorage.getItem('user'))
+   console.log(localStorage.getItem('type'))
+
     var refresh_laptop = function () {
-        $http.get('/laptopi').then(function (response) {
+        $http.get('/users/laptopi', config).then(function (response) {
           $scope.laptopi = response.data
         })
       }
       refresh_laptop()
     
     //Create Laptop
-    $scope.addLaptop = function() {
+    $scope.addLaptop = function () {
+      $http.post('/admin/laptopi', $scope.laptop,config).then(function (response) {
+        console.log(response)
+        toastr.success("Tour added successfully")
+        refresh_laptop()
+      })
+    }
+   /*  $scope.addLaptop = function() {
   
       //$http POST function
       $http({
   
         method: 'POST',
-        url: '/laptopi',
-        data: $scope.laptop
+        url: '/admin/laptopi',
+        data: $scope.laptop,
+        config
   
       }).then(function successCallback(response) {
   
@@ -30,16 +48,16 @@ function laptopController($scope, $http, toastr){
   
       }, function errorCallback(response) {
   
-        alert("Error. while created user Try Again!");
+        toastr.info("Nemate dozvolu za ovu radnju")
   
       });
   
     };
-
+ */
     $scope.deleteLaptop = function (id) {
       console.log('delete laptop')
       console.log(id)
-      $http.delete('/laptopi/' + id).then(function (response) {
+      $http.delete('/admin/laptopi/' + id, config).then(function (response) {
         console.log('removed')
         toastr.error("Laptop izbrisan")
       })
@@ -49,7 +67,7 @@ function laptopController($scope, $http, toastr){
     $scope.editLaptop = function (id) {
       console.log('Selected Laptop')
       console.log(id)
-      $http.get('/laptopi/' + id).then(function (response) {
+      $http.get('/admin/laptopi/' + id, config).then(function (response) {
         console.log('selected')
         $scope.laptop = response.data
       })
@@ -58,7 +76,7 @@ function laptopController($scope, $http, toastr){
     $scope.updateLaptop = function () {
       console.log('Update Laptop')
       console.log($scope.laptopi._id)
-      $http.put('/laptopi/' + $scope.laptop._id, $scope.laptop).then(function (response) {
+      $http.put('/admin/laptopi/' + $scope.laptop._id, $scope.laptop, config).then(function (response) {
         console.log('update')
         $scope.laptop.ime = ''
         $scope.laptop.brend = ''
