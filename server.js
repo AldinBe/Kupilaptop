@@ -8,10 +8,9 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
-var db = mongojs('mongodb://<kupilaptop>:<Statebriga1!>@ds125342.mlab.com:25342/kupilaptop_db');
-var port = process.env.PORT || 5000;
+var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/kupilaptopDB', ['laptopi', 'users']);var port = process.env.PORT || 5000;
 
-
+  
 
 app.use(express.static(__dirname + '/static'));
 app.use(express.json()); // to support JSON-encoded bodies
@@ -71,7 +70,7 @@ app.post('/login', function(req, res) {
           throw error;
       } 
       if(users) {
-          bcrypt.compare(user.password, users.password, function(err, resp){
+         // bcrypt.compare(user.password, users.password, function(err, resp){
               if(resp === true){
                   if(users.type == "admin"){
                     users.password = null;
@@ -104,7 +103,6 @@ app.post('/login', function(req, res) {
                       user : false
                   })
               }
-          })
       }
   });
 });
@@ -130,7 +128,6 @@ app.post('/register', function(req, res, next) {
   var user = req.body;
   var find = req.body.email;
   console.log(find);
-  bcrypt.hash(user.password, 10, function(err, hash) {
       user.password = hash;
       db.collection('users').find({
         email : find
@@ -150,7 +147,7 @@ app.post('/register', function(req, res, next) {
         }
       })
 
-  })
+
 });
 
 
