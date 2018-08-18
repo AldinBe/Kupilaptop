@@ -129,7 +129,6 @@ app.post('/register', function(req, res, next) {
   var user = req.body;
   var find = req.body.email;
   console.log(find);
-      user.password = hash;
       db.collection('users').find({
         email : find
       }).toArray(function (err,result){
