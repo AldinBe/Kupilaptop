@@ -23,7 +23,7 @@ function laptopController($scope, $http, toastr){
     $scope.addLaptop = function () {
       $http.post('/admin/laptopi', $scope.laptop,config).then(function (response) {
         console.log(response)
-        toastr.success("Tour added successfully")
+        toastr.success("Uspjesno dodan laptop")
         refresh_laptop()
       })
     }
@@ -91,7 +91,6 @@ function laptopController($scope, $http, toastr){
         $scope.laptop.vrstaMemorije = ''
         $scope.laptop.kapacitetMemorije = ''
         $scope.laptop.velicina = ''
-        $scope.laptop.tourName = ''
         $scope.laptop.cijena = ''
 
         toastr.success("Laptop updated successfully")

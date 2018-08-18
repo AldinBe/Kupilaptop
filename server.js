@@ -8,7 +8,7 @@ var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
-var db = mongojs('localhost:27017/kupilaptopDB', ['laptopi', 'users']);
+var db = mongojs('mongodb://<kupilaptop>:<Statebriga1!>@ds125342.mlab.com:25342/kupilaptop_db');
 var port = process.env.PORT || 5000;
 
 
@@ -186,7 +186,7 @@ app.put('/admin/laptopi/:id', function (req, res) {
   console.log(req.body.name);
   db.laptopi.findAndModify({
     query: {_id: mongojs.ObjectId(id)},
-    update: {$set: {ime: req.body.ime,brend: req.body.brend,vrsta: req.body.vrsta,procesor: req.body.procesor,procesorGeneracija: req.body.procesorGeneracija,brzinaProcesora: req.body.brzinaProcesora,ram: req.body.ram,graficka: req.body.graficka,vrstaGraficke: req.body.vrstaGraficke,kapacitetGraficke: req.body.kapacitetGraficke,vrstaMemorije: req.body.vrstaMemorije,kapacitetMemorije: req.body.kapacitetMemorije,velicina: req.body.velicina,tourName: req.body.tourName, cijena: req.body.cijena}},
+    update: {$set: {ime: req.body.ime,brend: req.body.brend,vrsta: req.body.vrsta,procesor: req.body.procesor,procesorGeneracija: req.body.procesorGeneracija,brzinaProcesora: req.body.brzinaProcesora,ram: req.body.ram,graficka: req.body.graficka,vrstaGraficke: req.body.vrstaGraficke,kapacitetGraficke: req.body.kapacitetGraficke,vrstaMemorije: req.body.vrstaMemorije,kapacitetMemorije: req.body.kapacitetMemorije,velicina: req.body.velicina,cijena: req.body.cijena}},
     new: true}, function (err, doc) {
       res.json(doc);
     }
