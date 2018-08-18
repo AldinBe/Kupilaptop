@@ -4,13 +4,14 @@ const app = express();
 const jwt_secret = 'WU5CjF8fHxG40S2t7oyk';
 const jwt_admin = 'SJwt25Wq62SFfjiw92sR';
 
-var bcrypt = require('bcrypt');
+// var bcrypt = require('bcrypt');
 var jwt = require('jsonwebtoken');
 var mongojs = require('mongojs');
 var MongoId = require('mongodb').ObjectID;
-var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/kupilaptopDB', ['laptopi', 'users']);var port = process.env.PORT || 5000;
+var db = mongojs(process.env.MONGOLAB_URI || 'localhost:27017/kupilaptopDB', ['laptopi', 'users']);
+var port = process.env.PORT || 5000;
 
-  
+
 
 app.use(express.static(__dirname + '/static'));
 app.use(express.json()); // to support JSON-encoded bodies
